@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses</title>
+    <style>
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+        .course-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .course-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        .course-title {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+        }
+        .course-description {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        .course-price {
+            font-weight: bold;
+            color: #2c5282;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center; margin: 2rem 0;">Available Courses</h1>
+    
+    <div class="course-grid">
+        <% courses.forEach(course => { %>
+            <div class="course-card">
+                <% if (course.imageUrl) { %>
+                    <img src="<%= course.imageUrl %>" alt="<%= course.title %>" class="course-image">
+                <% } %>
+                <h2 class="course-title"><%= course.title %></h2>
+                <p class="course-description"><%= course.description %></p>
+                <p class="course-price">$<%= course.price.toFixed(2) %></p>
+                <div class="d-flex justify-content-between gap-3">
+                    <button onclick="updatecource" id="<%= course._id %>">Update</button>
+                    <button onclick="deletecource" id="<%= course._id %>">Delete</button>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+</body>
+</html>
